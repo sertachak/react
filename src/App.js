@@ -38,26 +38,26 @@ class App extends Component {
 
 
   render(){
+
+    let persons = null;
+
+    if( this.state.toggleVisible ) {
+      persons = (
+          <div>
+            {this.state.persons.map( (person) => {
+              return <Person firstname={person.name} lesson={person.lesson}/>
+            })}
+            <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
+          </div>
+      );
+    }
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <button onClick={this.toggleHandler}>Toggle</button>
-          { this.state.toggleVisible === true ?
-            <div>
-            <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
-            <Person
-                firstname={this.state.persons[0].name}
-                lesson={this.state.persons[0].lesson}
-                click={this.switchNameHandler.bind(this, 'Max!!')}>First children
-            </Person>
-            <Person
-                firstname={this.state.persons[1].name}
-                lesson={this.state.persons[1].lesson}
-                nameChange={this.nameChangeHandler}>
-            </Person>
-          </div> : null
-          }
+          {persons}
           <a
             className="App-link"
             href="https://reactjs.org"
