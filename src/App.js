@@ -9,26 +9,55 @@ class App extends Component {
     persons: [
       {name:'Manu', lesson:28},
       {name:'Another Name', lesson:51}
-    ]
+    ],
+    toggleVisible: false
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (changedName) => {
     this.setState({
       persons:[
-        {name:'Changed Manu', lesson:25},
+        {name: changedName, lesson:25},
         {name:'Another name', lesson: 51}
       ]
     })
   }
+
+  nameChangeHandler = (event) => {
+    this.setState({
+      persons:[
+        {name: 'Manu', lesson:25},
+        {name: event.target.value, lesson: 51}
+      ]
+    })
+  }
+
+  toggleHandler = () => {
+    const doToggle = this.state.toggleVisible;
+    this.setState({toggleVisible: !doToggle})
+  }
+
 
   render(){
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <button onClick={this.switchNameHandler}>Change Name</button>
-          <Person firstname={this.state.persons[0].name} lesson={this.state.persons[0].lesson}>First children</Person>
-          <Person firstname={this.state.persons[1].name} lesson={this.state.persons[1].lesson}></Person>
+          <button onClick={this.toggleHandler}>Toggle</button>
+          { this.state.toggleVisible === true ?
+            <div>
+            <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
+            <Person
+                firstname={this.state.persons[0].name}
+                lesson={this.state.persons[0].lesson}
+                click={this.switchNameHandler.bind(this, 'Max!!')}>First children
+            </Person>
+            <Person
+                firstname={this.state.persons[1].name}
+                lesson={this.state.persons[1].lesson}
+                nameChange={this.nameChangeHandler}>
+            </Person>
+          </div> : null
+          }
           <a
             className="App-link"
             href="https://reactjs.org"
