@@ -7,8 +7,8 @@ class App extends Component {
 
   state = {
     persons: [
-      {name:'Manu', lesson:28},
-      {name:'Another Name', lesson:51}
+      {id: 'asdasd111',name:'Manu', lesson:28},
+      {id: 'asdasdas2222', name:'Another Name', lesson:51}
     ],
     toggleVisible: false
   }
@@ -16,10 +16,30 @@ class App extends Component {
   switchNameHandler = (changedName) => {
     this.setState({
       persons:[
-        {name: changedName, lesson:25},
-        {name:'Another name', lesson: 51}
+        {id:'asdasd111', name: changedName, lesson:25},
+        {id:'asdasdas2222', name:'Another name', lesson: 51}
       ]
     })
+  }
+
+  inputNameHandler = ( event, id ) => {
+    const personIndex = this.state.persons.findIndex( ( person ) => {
+      return person.id === id;
+    })
+
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({
+      persons: persons
+    })
+
   }
 
   toggleHandler = () => {
@@ -28,7 +48,8 @@ class App extends Component {
   }
 
   deletePersonHandler = (index) => {
-    const persons = this.state.persons
+    //const persons = this.state.persons -> can lead problems because just use the original pointer of object
+    const persons = [...this.state.persons]
     persons.splice(index, 1)
     this.setState({persons: persons})
   }
@@ -45,7 +66,9 @@ class App extends Component {
               return <Person
                   click={this.deletePersonHandler.bind(this, index)}
                   firstname={person.name}
-                  lesson={person.lesson}/>
+                  lesson={person.lesson}
+                  key={person.id}
+                  nameChange={( event ) => this.inputNameHandler(event, person.id)}/>
             })}
             <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
           </div>
