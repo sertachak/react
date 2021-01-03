@@ -1,8 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {Component} from "react";
-import Radium from 'radium'
+import styled from 'styled-components'
 import Person from './Person/Person'
+
+const StyledButton= styled.button`
+  background-color: ${ (props) => { return props.alt === true ? 'red' : 'green' } };
+  color: white;
+  font: inherit;
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => { return props.alt === true ? 'salmon' : 'lightgreen'}};
+    color: black;
+  }
+`
 
 class App extends Component {
 
@@ -58,19 +71,6 @@ class App extends Component {
 
   render(){
 
-    const style={
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid #ccc',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
     let persons = null;
 
     if( this.state.toggleVisible ) {
@@ -87,31 +87,25 @@ class App extends Component {
             <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
           </div>
       );
-
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <button onClick={this.toggleHandler} style={style}>Toggle</button>
-          {persons}
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo"/>
+              <StyledButton alt={this.state.toggleVisible} onClick={this.toggleHandler} >Toggle</StyledButton>
+              {persons}
+              <a
+                  className="App-link"
+                  href="https://reactjs.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+              >
+                Learn React
+              </a>
+            </header>
+          </div>
     );
 }}
 
-export default Radium(App);
+export default App;
