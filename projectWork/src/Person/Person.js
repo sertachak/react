@@ -1,5 +1,5 @@
 import React from 'react'
-//import './Person.css'
+import classes from './Person.module.css'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
@@ -24,12 +24,11 @@ const person = (props) => {
     };*/
 
     return(
-        //<div className="Person" style={style}>
-        <StyledDiv>
+        <div className={classes.Person}>
             <p onClick={props.click}>Here are props {props.firstname}, {props.lesson} and lastly
                 children {props.children}</p>
             <input onChange={props.nameChange} value={props.firstname}/>
-        </StyledDiv>
+        </div>
     );
 }
 

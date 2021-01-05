@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import React, {Component} from "react";
 import styled from 'styled-components'
 import Person from './Person/Person'
