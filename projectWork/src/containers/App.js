@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import classes from './App.css';
 import React, {Component} from "react";
 import styled from 'styled-components'
-import Person from './Person/Person'
+import Persons from '../components/Persons/Persons'
 
 const StyledButton= styled.button`
   background-color: ${ (props) => { return props.alt === true ? 'red' : 'green' } };
@@ -76,14 +76,10 @@ class App extends Component {
     if( this.state.toggleVisible ) {
       persons = (
           <div>
-            {this.state.persons.map( (person, index) => {
-              return <Person
-                  click={this.deletePersonHandler.bind(this, index)}
-                  firstname={person.name}
-                  lesson={person.lesson}
-                  key={person.id}
-                  nameChange={( event ) => this.inputNameHandler(event, person.id)}/>
-            })}
+            <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.inputNameHandler}/>
             <button onClick={this.switchNameHandler.bind(this,'Changed Manu')}>Change Name</button>
           </div>
       );
