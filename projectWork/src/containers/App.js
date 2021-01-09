@@ -3,19 +3,7 @@ import classes from './App.css';
 import React, {Component} from "react";
 import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
-
-const StyledButton= styled.button`
-  background-color: ${ (props) => { return props.alt === true ? 'red' : 'green' } };
-  color: white;
-  font: inherit;
-  border: 1px solid #ccc;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${(props) => { return props.alt === true ? 'salmon' : 'lightgreen'}};
-    color: black;
-  }
-`
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
 
@@ -89,16 +77,8 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo"/>
-              <StyledButton alt={this.state.toggleVisible} onClick={this.toggleHandler} >Toggle</StyledButton>
+              <Cockpit toggleHandler={this.toggleHandler} toggleVisible={this.state.toggleVisible}/>
               {persons}
-              <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
             </header>
           </div>
     );
