@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import classes from './Person.module.css'
 import styled from 'styled-components'
 
@@ -16,20 +16,17 @@ const StyledDiv = styled.div`
 `;
 
 
-const person = (props) => {
-    /*const style = {
-        '@media (min-width: 600px)': {
-            width: '450px'
-        }
-    };*/
-
-    return(
-        <div className={classes.Person}>
-            <p onClick={props.click}>Here are props {props.firstname}, {props.lesson} and lastly
-                children {props.children}</p>
-            <input onChange={props.nameChange} value={props.firstname}/>
-        </div>
-    );
+class Person extends Component {
+    render()
+    {
+        return (
+            <div className={classes.Person}>
+                <p onClick={this.props.click}>Here are props {this.props.firstname}, {this.props.lesson} and lastly
+                    children {this.props.children}</p>
+                <input onChange={this.props.nameChange} value={this.props.firstname}/>
+            </div>
+        );
+    }
 }
 
-export default person
+export default Person;

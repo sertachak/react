@@ -12,7 +12,8 @@ class App extends Component {
       {id: 'asdasd111',name:'Manu', lesson:28},
       {id: 'asdasdas2222', name:'Another Name', lesson:51}
     ],
-    toggleVisible: false
+    toggleVisible: false,
+    cockpitVisible: true
   }
 
   switchNameHandler = (changedName) => {
@@ -44,9 +45,10 @@ class App extends Component {
 
   }
 
-  toggleHandler = () => {
-    const doToggle = this.state.toggleVisible;
-    this.setState({toggleVisible: !doToggle})
+  toggleHandler = ( name, toggle ) => {
+    console.log(toggle);
+    const doToggle = toggle;
+    this.setState({[name]: !doToggle})
   }
 
   deletePersonHandler = (index) => {
@@ -55,7 +57,6 @@ class App extends Component {
     persons.splice(index, 1)
     this.setState({persons: persons})
   }
-
 
   render(){
 
@@ -77,7 +78,12 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo"/>
-              <Cockpit toggleHandler={this.toggleHandler} toggleVisible={this.state.toggleVisible}/>
+              <button onClick={() => this.toggleHandler('cockpitVisible',this.state.cockpitVisible)}>Remove Cockpit</button>
+              {this.state.cockpitVisible ?
+                  <Cockpit toggleHandler={() => this.toggleHandler('toggleVisible', this.state.toggleVisible)}
+                           toggleVisible={this.state.toggleVisible}/> :
+                  null
+              }
               {persons}
             </header>
           </div>
