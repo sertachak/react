@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
+import WithClass from '../hoc/WithClass'
 
 class App extends Component {
 
@@ -75,7 +76,7 @@ class App extends Component {
     }
 
     return (
-          <div className="App">
+          <WithClass className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo"/>
               <button onClick={() => this.toggleHandler('cockpitVisible',this.state.cockpitVisible)}>Remove Cockpit</button>
@@ -86,7 +87,7 @@ class App extends Component {
               }
               {persons}
             </header>
-          </div>
+          </WithClass>
     );
 }}
 
