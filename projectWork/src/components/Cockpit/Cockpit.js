@@ -1,4 +1,5 @@
 import React from 'react'
+import AuthenticationContext from '../../context/authenticationContext'
 import logo from '../../logo.svg';
 import styled from "styled-components";
 import cockpitStyle from './Cockpit.module.css'
@@ -21,6 +22,9 @@ const cockpit = (props) => {
         <div className="Cockpit-div">
             <img src={logo} className="Cockpit-logo" alt="logo"/>
             <StyledButton alt={props.toggleVisible} onClick={props.toggleHandler}>Toggle</StyledButton>
+            <AuthenticationContext.Consumer>
+                {(context) => { return (<StyledButton onClick={context.login}>Login</StyledButton>) }}
+            </AuthenticationContext.Consumer>
         </div>);
 }
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import AuthenticationContext from '../../../context/authenticationContext'
 import classes from './Person.module.css'
 import styled from 'styled-components'
 
@@ -17,13 +18,25 @@ const StyledDiv = styled.div`
 
 
 class Person extends Component {
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount() {
+        this.inputElementRef.current.focus();
+    }
+
     render()
     {
         return (
             <div className={classes.Person}>
+                <AuthenticationContext.Consumer>
+                    {(context) => { return (context.authenticated ? <p>Authenticated!</p> : <p>Please authenticate</p>)}}
+                </AuthenticationContext.Consumer>
                 <p onClick={this.props.click}>Here are props {this.props.firstname}, {this.props.lesson} and lastly
                     children {this.props.children}</p>
-                <input onChange={this.props.nameChange} value={this.props.firstname}/>
+                <input ref={this.inputElementRef} onChange={this.props.nameChange} value={this.props.firstname}/>
             </div>
         );
     }

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
 import WithClass from '../hoc/WithClass'
+import AuthenticationContext from '../context/authenticationContext'
 
 class App extends Component {
 
@@ -14,7 +15,9 @@ class App extends Component {
       {id: 'asdasdas2222', name:'Another Name', lesson:51}
     ],
     toggleVisible: false,
-    cockpitVisible: true
+    cockpitVisible: true,
+    changeCounter: 0,
+    authenticated: false
   }
 
   switchNameHandler = (changedName) => {
@@ -40,8 +43,11 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons
+    this.setState( (prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
     })
 
   }
@@ -57,6 +63,12 @@ class App extends Component {
     const persons = [...this.state.persons]
     persons.splice(index, 1)
     this.setState({persons: persons})
+  }
+
+  loginHandler = () => {
+    this.setState({
+      authenticated: !this.state.authenticated
+    })
   }
 
   render(){
@@ -80,12 +92,14 @@ class App extends Component {
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo"/>
               <button onClick={() => this.toggleHandler('cockpitVisible',this.state.cockpitVisible)}>Remove Cockpit</button>
+              <AuthenticationContext.Provider value={{authenticated:this.state.authenticated, login: this.loginHandler}}>
               {this.state.cockpitVisible ?
                   <Cockpit toggleHandler={() => this.toggleHandler('toggleVisible', this.state.toggleVisible)}
                            toggleVisible={this.state.toggleVisible}/> :
                   null
               }
               {persons}
+              </AuthenticationContext.Provider>
             </header>
           </WithClass>
     );
