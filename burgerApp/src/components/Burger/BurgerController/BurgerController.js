@@ -22,7 +22,7 @@ const burgerController = (props) => {
                     removed={() => props.removingIngredients(control.type)}
                     disabledControl={props.disabledControl[control.type]}/>
             })}
-            <button className={classes.OrderButton} disabled={!props.purchasable}>Purchase</button>
+            <button className={classes.OrderButton} disabled={!props.purchasable} onClick={props.purchasing}>Purchase</button>
         </div>
 
     );
