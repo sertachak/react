@@ -7,7 +7,8 @@ import axios from 'axios';
 class Blog extends Component{
 
     state={
-        posts: []
+        posts: [],
+        error: false
     }
 
     componentDidMount() {
@@ -21,15 +22,19 @@ class Blog extends Component{
                     }
                 })
                 this.setState({posts: updatedData})
-            })
+            }).catch( error => {
+                this.setState({error:true})
+        })
     }
 
     render() {
 
-        console.log(this.state.posts)
-            const posts = this.state.posts.map( post => {
+        let posts = <p>Something go wrong!!!</p>
+        if(!this.state.error) {
+             posts = this.state.posts.map(post => {
                 return <Post key={post.id} title={post.title} author={post.author}/>
             });
+        }
 
         return(
             <div className={classes.Posts}>
