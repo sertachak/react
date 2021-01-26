@@ -1,0 +1,20 @@
+.Post{
+    border: 1px solid #282c34;
+    box-shadow: 10px 10px 50px 5px darkgrey;
+    text-align: center;
+    margin: 15px 10px;
+    padding-bottom: 15px;
+    width: 250px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.Post:hover,
+.Post:active {
+    background-color: #C0DDF5;
+}
+
+.Author {
+    margin: 16px 0;
+    color: #ccc;
+}
