@@ -7,7 +7,8 @@ const withErrorHandler = (WrappedComponent, axios) => {
     return (class extends Component {
 
         state = {
-            error: null
+            error: null,
+            initialized: false
         }
 
         componentDidMount() {
@@ -21,6 +22,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
             }, (error) => {
                 this.setState({error: error})
             })
+            this.setState({initialized: true})
         }
 
         errorIsHandled = () => {
@@ -28,6 +30,9 @@ const withErrorHandler = (WrappedComponent, axios) => {
         }
 
         render() {
+            const {initialized} = this.state;
+            if(!initialized)
+                return null
             return (
                 <Aux>
                     <Modal show={this.state.error} closeBackdrop={this.errorIsHandled}>
