@@ -36,10 +36,20 @@ class Blog extends Component{
             });
         }
 
-        return(
+        return (
+           <div className={classes.Blog}>
+               <header>
+                   <nav>
+                       <ul>
+                           <li><a href="/">Home</a></li>
+                           <li><a href="/">New Post</a></li>
+                       </ul>
+                   </nav>
+               </header>
             <div className={classes.Posts}>
                 {posts}
             </div>
+           </div>
         );
     }
 }
