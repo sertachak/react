@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import Post from '../../Components/Post/Post'
+import NewPost from '../../Components/NewPost/NewPost'
 import classes from './Blog.module.css'
 import axios from 'axios';
 
@@ -37,19 +38,20 @@ class Blog extends Component{
         }
 
         return (
-           <div className={classes.Blog}>
-               <header>
-                   <nav>
-                       <ul>
-                           <li><a href="/">Home</a></li>
-                           <li><a href="/">New Post</a></li>
-                       </ul>
-                   </nav>
-               </header>
-            <div className={classes.Posts}>
-                {posts}
+            <div className={classes.Blog}>
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/">New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div className={classes.Posts}>
+                    {posts}
+                </div>
+                <NewPost/>
             </div>
-           </div>
         );
     }
 }

@@ -18,3 +18,9 @@
     display:inline-block;
     margin: 20px;
 }
+
+.Blog a:hover,
+.Blog a:active {
+    color: #61dafb;
+
+}
