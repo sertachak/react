@@ -12,7 +12,11 @@
 }
 
 .Blog a:hover,
-.Blog a:active {
+.Blog a:active{
     color: #61dafb;
+}
 
+.Blog a.aActiveStyle,
+.Blog a.aActiveStyle:hover{
+    color:#a00;
 }
