@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import classes from "./Posts.module.css";
 import Post from "../../Components/Post/Post";
 import axios from "../../axios";
@@ -11,8 +10,8 @@ class Posts extends Component{
         error: false
     }
 
-    clickHandler = () => {
-
+    clickHandler = (id) => {
+        this.props.history.push('/posts/' + id)
     }
 
     componentDidMount() {
@@ -37,12 +36,12 @@ class Posts extends Component{
         if(!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    <Link to={'/posts/' + post.id} key={post.id}>
+                    //<Link to={'/posts/' + post.id} key={post.id}>
                         <Post
                             click={() => this.clickHandler(post.id)}
                             title={post.title}
                             author={post.author}/>
-                    </Link>
+                    //</Link>
                 )
             });
         }
