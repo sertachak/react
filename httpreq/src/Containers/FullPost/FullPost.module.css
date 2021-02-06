@@ -1,0 +1,20 @@
+.FullPost{
+    padding: 10px;
+    margin: 15px;
+    border: 1px solid #282c34;
+    box-shadow: 20px 20px 50px 5px;
+    display: block;
+    text-align: center;
+}
+
+.FullPost button{
+    border: none;
+    background-color: darkgrey;
+    color: #282c34;
+    border-radius: 13px;
+}
+
+.FullPost button:hover,
+.FullPost button:active {
+    background-color: #61dafb;
+}
