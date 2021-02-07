@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {NavLink, Route, Switch} from 'react-router-dom'
 
-import FullPost from '../FullPost/FullPost'
 import NewPost from '../NewPost/NewPost'
 import Posts from '../Posts/Posts'
 import classes from './Blog.module.css'
@@ -14,15 +13,14 @@ class Blog extends Component{
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink activeClassName={classes.aActiveStyle} to="/" exact>Home</NavLink></li>
+                            <li><NavLink activeClassName={classes.aActiveStyle} to="/posts" exact>Home</NavLink></li>
                             <li><NavLink activeClassName={classes.aActiveStyle} to="/newPost">New Post</NavLink></li>
                         </ul>
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/" exact component={Posts}/>
+                    <Route path="/posts" component={Posts}/>
                     <Route path="/newPost" component={NewPost}/>
-                    <Route path="/posts/:id" exact component={FullPost}/>
                 </Switch>
             </div>
         );
