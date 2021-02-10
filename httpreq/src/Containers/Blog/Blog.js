@@ -4,6 +4,7 @@ import {NavLink, Route, Switch} from 'react-router-dom'
 import NewPost from '../NewPost/NewPost'
 import Posts from '../Posts/Posts'
 import classes from './Blog.module.css'
+import {Redirect} from "react-router";
 
 class Blog extends Component{
 
@@ -21,6 +22,7 @@ class Blog extends Component{
                 <Switch>
                     <Route path="/posts" component={Posts}/>
                     <Route path="/newPost" component={NewPost}/>
+                    <Redirect to="/posts" from="/" />
                 </Switch>
             </div>
         );
