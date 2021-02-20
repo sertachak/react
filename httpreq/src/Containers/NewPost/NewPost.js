@@ -7,7 +7,7 @@ const NewPost = (props) => {
     const[submitted, setSubmitted] = useState(false);
 
     useEffect( () => {
-        setSubmitted(true);
+        setSubmitted(false);
     }, [])
 
     let redirect = null;
