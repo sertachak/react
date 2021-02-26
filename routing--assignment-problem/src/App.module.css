@@ -1,0 +1,9 @@
+.App ul {
+    width: 100%;
+    align-items: center;
+}
+
+.App li {
+    display: inline-block;
+    margin: 20px
+}
