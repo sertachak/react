@@ -27,11 +27,13 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://burgertime-63df8-default-rtdb.europe-west1.firebasedatabase.app/ingredients')
+        axios.get('/ingredients.json')
             .then( (response) => {
+                console.log("Response: " + response)
                 this.setState({ingredients: response.data})
             })
             .catch( (error) => {
+                console.log(error)
                 this.setState({error: true})
             })
     }
