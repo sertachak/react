@@ -13,6 +13,30 @@ class ContactData extends Component {
         }
     }
 
+    orderHandler = (event) => {
+        event.preventDefault();
+        this.setState({loading: true})
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer:{
+                name: 'Qamuran',
+                address: {
+                    street: 'test',
+                    zipcode: '06zip'
+                },
+                email: 'test@test.com'
+            }
+        }
+        axios.post('/orders.json', order )
+            .then( response => {
+                this.setState({loading: false, purchasing: false})
+            })
+            .catch( error => {
+                this.setState({loading: false, purchasing:false})
+            })
+    }
+
 
     render(){
         return(
@@ -23,7 +47,7 @@ class ContactData extends Component {
                     <input className={classes.Input} type="email" name="email" placeholder="Your Email"/>
                     <input className={classes.Input} type="text" name="street" placeholder="Street"/>
                     <input className={classes.Input} type="text" name="postal" placeholder="Postal Code"/>
-                    <Button btnType='Success'>ORDER</Button>
+                    <Button btnType='Success' clicked={this.orderHandler}>ORDER</Button>
                 </form>
             </div>
         );
