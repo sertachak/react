@@ -36,7 +36,7 @@ const ErrorModal = (props) => {
             )}
             {ReactDOM.createPortal(
                 <ModalOverlay {...props}/>,
-                document.getElementById( 'modal-root')
+                document.getElementById('modal-root')
             )}
         </React.Fragment>
     )
