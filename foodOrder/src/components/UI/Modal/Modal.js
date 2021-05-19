@@ -19,10 +19,18 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById('overlays')
 
 const Modal = (props) => {
-    return(
-        <React.Fragment>
+    let currentModal = null
+    if( props.visible){
+        currentModal = <React.Fragment>
             {ReactDOM.createPortal(<Backdrop/>, portalElement)}
             {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
+        </React.Fragment>
+
+    }
+
+    return(
+        <React.Fragment>
+            {currentModal}
         </React.Fragment>
     )
 }
