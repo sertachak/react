@@ -1,14 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import DemoOutput from "./Demo/DemoOutput";
+import Button from "./UI/Button/Button";
 
 function App() {
 
-  const [showParagraph, setShowParagraph] = useState();
+  const [showParagraph, setShowParagraph] = useState(false);
+  const [allowToggle, setAllowToggle] = useState(false);
 
-  const buttonClickHandler = () => {
-    setShowParagraph(prevShowParagraph => !prevShowParagraph);
+  const buttonClickHandler = useCallback(() => {
+    if(allowToggle) {
+      setShowParagraph(prevShowParagraph => !prevShowParagraph);
+    }
+  }, [allowToggle]);
+
+  const toggleClickHandler = () => {
+    setAllowToggle( prevAllowToggle => !prevAllowToggle);
   }
 
   return (
@@ -19,6 +27,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <DemoOutput show={false}/>
+        <Button onClick={toggleClickHandler}>Allow Toggling</Button>
           <button onClick={buttonClickHandler} style={{backgroundColor: "#282c34",
             color: "white",
             padding: "40px",
